@@ -1,0 +1,105 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Items{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">
+        Items
+          {% if unit.name is not none %}
+            in {{unit.name}}
+          {% endif %}
+          {% if shelf.name is not none %}
+            on {{shelf.name}}
+          {% endif %}
+        </h1>
+        {% if items %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  {% if shelf.name is none and unit.name is none %}
+                  <th width="10%"> Name </th>
+                  <th width="20%"> Description </th>
+                  <th width="10%"> Unit </th>
+                  <th width="15%"> Shelf</th>
+                  <th width="5%">  Quantity </th>
+                  <th width="10%"> Reservation Count </th>
+                  {% else %}
+                  {% if shelf.name is none %}
+                  <th width="15%"> Name </th>
+                  <th width="20%"> Description </th>
+                  <th width="20%"> Shelf</th>
+                  <th width="5%">  Quantity </th>
+                  <th width="10%"> Reservation Count </th>
+                  {% else %}
+                  <th width="15%"> Name </th>
+                  <th width="20%"> Description </th>
+                  <th width="10%"> Quantity </th>
+                  <th width="15%"> Reservation Count </th>
+                  {% endif %}
+                  {% endif %}
+                </tr>
+              </thead>
+              <tbody>
+              {% for item in items %}
+                <tr>
+                  <td>
+                    <a href="{{ url_for('auth.list_reservations', type_code=0, object_id=item.id) }}">
+                      {{ item.name }}
+                    </a>
+                  </td>
+                  <td> {{ item.description }} </td>
+                  {% if unit.name is none %}
+                  <td> 
+                  {% if item.unit %}
+                    <a href="{{ url_for('auth.list_items_unit', unit_id=item.unit.id) }}">
+                      {{ item.unit.name }}
+                    </a>
+                  {% else %}
+                    Unassigned
+                  {% endif %} 
+                  </td>
+                  {% endif %}
+                  {% if shelf.name is none %}
+                  <td> 
+                  {% if item.shelf %}
+                    <a href="{{ url_for('auth.list_items', type_code=0, object_id=item.shelf.id) }}">
+                      {{ item.shelf.name }}
+                    </a>
+                  {% else %}
+                    Unassigned
+                  {% endif %}
+                  </td>
+                  {% endif %}
+                  <td> {{ item.quantity }} </td>
+                  <td>
+                    {% if item.reservations %}
+                        {{ item.reservations.count() }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No items have been added. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

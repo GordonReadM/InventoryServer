@@ -1,0 +1,33 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if add_reservation %}
+        Add Reservation
+    {% else %}
+        Edit Reservation
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="content-section">
+ <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div class="center">
+            {% if add_reservation %}
+            <h1>
+                Add Reservation 
+                {% if form.hasItem %}
+                    for {{ form.item.name }}
+                {% endif %}
+            </h1>
+            {% else %}
+                <h1>Edit Reservation for {{ form.item.name }}</h1>
+            {% endif %}
+            <br/>
+            {{ wtf.quick_form(form) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

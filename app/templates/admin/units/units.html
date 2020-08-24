@@ -1,0 +1,87 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Units{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Units</h1>
+        {% if units %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="10%"> Name </th>
+                  <th width="30%"> Location </th>
+                  <th width="10%"> Items </th>
+                  <th width="10%"> Shelves </th>
+                  <th width="20%"> View/Add Shelves </th>
+                  <th width="10%"> Edit </th>
+                  <th width="10%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for unit in units %}
+                <tr>
+                  <td>
+                    <a href="{{ url_for('admin.list_items_unit', unit_id=unit.id) }}">
+                      {{ unit.name }}
+                    </a>
+                  </td>
+                  <td>
+                    {{ unit.location }}
+                  </td>
+                  <td>
+                    {% if unit.items %}
+                        {{ unit.items.count() }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if unit.shelves %}
+                        {{ unit.shelves.count() }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="{{ url_for('admin.list_shelves', unit_id=unit.id) }}">
+                      View/Add Shelves
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{ url_for('admin.edit_unit', id=unit.id) }}">
+                      <i class="fa fa-pencil"></i> Edit
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{ url_for('admin.delete_unit', id=unit.id) }}">
+                      <i class="fa fa-trash"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div style="text-align: center">
+            <h3> No units have been added. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+        <a href="{{ url_for('admin.add_unit') }}" class="btn btn-default btn-lg btn-fixed">
+            <i class="fa fa-plus"></i>
+            Add Unit
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

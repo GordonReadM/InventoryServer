@@ -1,0 +1,65 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Units{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Containers 
+        {% if shelf %}
+        on {{shelf.name}} in {{shelf.unit.name}}
+        {% endif %}
+        </h1>
+        {% if containers %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="10%"> Name </th>
+                  <th width="30%"> Unit </th>
+                  <th width="10%"> Shelf </th>
+                  <th width="10%"> Items </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for container in containers %}
+                <tr>
+                  <td>
+                    <a href="{{ url_for('auth.list_items_container', container_id=container.id) }}">
+                      {{ container.name }}
+                    </a>
+                  </td>
+                  <td>
+                    {{ container.unit.name }}
+                  </td>
+                  <td>
+                    {{ container.shelf.name }}
+                  </td>
+                  <td>
+                    {% if container.items %}
+                        {{ container.items.count() }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div style="text-align: center">
+            <h3> No containers have been added for this shelf. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

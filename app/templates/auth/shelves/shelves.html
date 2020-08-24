@@ -1,0 +1,49 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Units{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Shelves in {{unit.name}}</h1>
+        {% if shelves %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="20%"> Name </th>
+                  <th width="10%"> Items </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for shelf in shelves %}
+                <tr>
+                  <td>
+                    <a href="{{ url_for('auth.list_containers', shelf_id=shelf.id) }}">
+                      {{ shelf.name }} 
+                    </a>
+                  </td>
+                  <td>
+                    {{ shelf.items.count() }}
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div style="text-align: center">
+            <h3> No shelves for this unit have been added. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

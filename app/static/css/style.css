@@ -1,0 +1,157 @@
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+body, h1, h2, h3 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+
+a, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
+  color: #cfb53b;
+}
+
+a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav>li>a:hover {
+  color: #687430;
+}
+
+table {
+    padding-bottom: 100px
+}
+
+footer {
+    padding: 20px 0 25px 0;
+    background-color: #f8f8f8;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+.alert-info {
+    width: 50%;
+    margin: auto;
+    color: #687430;
+    background-color: #e6ecca;
+    border-color: #cfb53b;
+}
+
+.btn-default {
+    border-color: #cfb53b;
+    color: #cfb53b;
+}
+
+.btn-default:hover {
+    background-color: #cfb53b;
+}
+
+.btn-fixed {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100px;
+}
+
+/*.add-btn {
+    position: fixed;
+    height: 30px;
+    bottom: 80px;
+    left:0;
+    right:0;
+    background-color: #cfb53b; 
+}
+
+.add-btn>a {
+    color: #f8f8f8;
+}
+
+.add-btn>a:hover {
+    color: #e8e8e8;
+}*/
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px 0 100px 0;
+}
+
+.content-section {
+    border-top: 1px solid #e7e7e7;
+}
+
+footer, .push {
+  clear: both;
+  height: 4em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/background-img.png) no-repeat center center;
+    background-size: cover;
+    height: 100%;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    color: #cfb53b;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.topnav {
+    font-size: 14px;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    padding-top: 100px;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+}
